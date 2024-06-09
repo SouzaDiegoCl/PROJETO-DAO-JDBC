@@ -25,8 +25,13 @@ public class Program2 {
 		}
 
 		System.out.println("=== TEST 3: Department findById ===");
-		Department dep = departmentDao.findById(2);
+		Department dep = departmentDao.findById(1);
 		System.out.println("Department found! " + dep);
+
+		System.out.println("=== TEST 4: Department Update ===");
+		dep.setName("TesteUpdate");
+		departmentDao.update(dep);
+		System.out.println("Update Executed! ");
 
 		
 	}
