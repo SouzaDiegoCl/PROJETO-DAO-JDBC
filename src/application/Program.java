@@ -52,7 +52,6 @@ public class Program {
 		try {
 			sellerDao.deleteById(idDelete);
 			System.out.println("Delete Completed! Seller with id = " + idDelete + " Deleted");
-
 		}
 		catch(DbException e) {
 			System.out.println(e.getMessage());
