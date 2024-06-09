@@ -2,7 +2,9 @@ package application;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
+import db.DbException;
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
 import model.entities.Department;
@@ -11,6 +13,8 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -34,8 +38,7 @@ public class Program {
 		System.out.println("=== TEST 4: Seller Insert ===");		
 		Seller newSeller = new Seller(null, "Diego", "d@gmail.com", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
-		System.out.println("Seller inserted! New Id = " + newSeller.getId());
-		
+		System.out.println("Seller inserted! New Id = " + newSeller.getId());		
 		
 		System.out.println("=== TEST 5: Seller Update ===");
 		seller = sellerDao.findById(1);
@@ -43,7 +46,18 @@ public class Program {
 		sellerDao.update(seller);
 		System.out.println("Update Completed");
 		
+		System.out.println("=== TEST 6: Seller Delete ===");
+		System.out.print("Digite um id de vendedor: ");
+		int idDelete = sc.nextInt();
+		try {
+			sellerDao.deleteById(idDelete);
+			System.out.println("Delete Completed! Seller with id = " + idDelete + " Deleted");
 
+		}
+		catch(DbException e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 }
